@@ -1,11 +1,11 @@
 import java.nio.file.*
 import java.io.IOException
-import kotlin.system.exitProcess
 
 fun main() {
-
-    //val p: Path = getPath()
-    println(getPath())
+    val p = getPath()
+    val songlist = SongList(p)
+    songlist.refreshSong()
+    songlist.listSongs()
 
 
     //var path = getStorage()
@@ -14,7 +14,7 @@ fun main() {
 }
 
 fun getPath():Path{
-    var songPath = Paths.get(System.getenv("ProgramFiles(X86)"), "team", "steamapps", "common", "Beat Saber", "WIP Songs")
+    var songPath = Paths.get(System.getenv("ProgramFiles(X86)"), "Steam", "steamapps", "common", "Beat Saber", "WIP Songs")
     try {
         if (!Files.isDirectory(songPath)) {
             println("\nCould not find the Path to the Wip Folder")
@@ -31,6 +31,10 @@ fun getPath():Path{
         return songPath
     }
 }
+
+
+
+
 fun killmeplease(a:String?){
     println(a)
     System.exit(-1)
