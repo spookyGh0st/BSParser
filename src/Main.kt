@@ -4,7 +4,7 @@ import kotlin.system.exitProcess
 
 fun main() {
 
-    var p: Path = getPath()
+    val p: Path = getPath()
     println(p)
 
     //var path = getStorage()
@@ -13,7 +13,7 @@ fun main() {
 }
 
 fun getPath():Path{
-    var home: String = System.getProperty("user.home")
+    val home: String = System.getProperty("user.home")
     var p = Paths.get(home, "AppData","Roaming","BSParser")
     try {
         if(!Files.isDirectory(p)){
@@ -22,7 +22,7 @@ fun getPath():Path{
         }
     }catch (e: IOException ){
         println("Please enter the Settings folder manually")
-        var tempP = readLine()
+        val tempP = readLine()
         p = Paths.get(tempP)
     }finally {
         if(!Files.isDirectory(p)){
