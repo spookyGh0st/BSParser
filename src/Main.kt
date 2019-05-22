@@ -13,6 +13,7 @@ fun main() {
 
 }
 
+//tries to get the default steam path, if that fails, the user has to manually add it
 fun getPath():Path{
     var songPath = Paths.get(System.getenv("ProgramFiles(X86)"), "Steam", "steamapps", "common", "Beat Saber", "WIP Songs")
     try {
@@ -34,7 +35,7 @@ fun getPath():Path{
 
 
 
-
+//kills the process and displays the error message
 fun killmeplease(a:String?){
     println(a)
     System.exit(-1)

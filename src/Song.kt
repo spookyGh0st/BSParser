@@ -27,7 +27,8 @@ class Song(val path: Path){
 
 
     fun getInfo(){
-        val json = path.toFile().readText()
+        //ZUGRIFFSBESCHRÄNKUNG
+        //val json = path.toFile().readText()
         //val jsonObj = JSObject(json.substring(json.indexOf("{"), json.lastIndexOf("}") + 1))
 
 
