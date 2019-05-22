@@ -4,8 +4,9 @@ import kotlin.system.exitProcess
 
 fun main() {
 
-    val p: Path = getPath()
-    println(p)
+    //val p: Path = getPath()
+    println(getPath())
+
 
     //var path = getStorage()
 
@@ -13,23 +14,24 @@ fun main() {
 }
 
 fun getPath():Path{
-    val home: String = System.getProperty("user.home")
-    var p = Paths.get(home, "AppData","Roaming","BSParser")
+    var songPath = Paths.get(System.getenv("ProgramFiles(X86)"), "team", "steamapps", "common", "Beat Saber", "WIP Songs")
     try {
-        if(!Files.isDirectory(p)){
-            println("creating AppData Directory")
-            Files.createDirectories(p)
+        if (!Files.isDirectory(songPath)) {
+            println("\nCould not find the Path to the Wip Folder")
+            println("please enter it (e.g. C:\\Program Files (x86)\\Steam\\steamapps\\common\\Beat Saber\\WIP Songs")
+            print("path: ")
+            songPath = Paths.get(readLine())
         }
-    }catch (e: IOException ){
-        println("Please enter the Settings folder manually")
-        val tempP = readLine()
-        p = Paths.get(tempP)
+        if(!Files.isDirectory(songPath)){
+            throw IOException("$songPath is not an directory, exiting")
+        }
+    }catch (e:IOException){
+        killmeplease(e.message)
     }finally {
-        if(!Files.isDirectory(p)){
-            println("failed to initialized Path, exiting")
-            exitProcess(-1)
-        }
-        return p
+        return songPath
     }
-
+}
+fun killmeplease(a:String?){
+    println(a)
+    System.exit(-1)
 }
