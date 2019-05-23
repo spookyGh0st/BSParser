@@ -1,5 +1,4 @@
 import com.google.gson.annotations.SerializedName
-import java.nio.file.Path
 
 /*
 Copyright (c) 2019 Kotlin Data Classes Generated from JSON powered by http://www.json2kotlin.com
@@ -13,22 +12,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
-data class Song (
+data class _difficultyBeatmapSets (
 
-	//var path: Path? = null,
-	@SerializedName("_version") val _version: String,
-	@SerializedName("_songName") val _songName: String,
-	@SerializedName("_songSubName") val _songSubName: String,
-	@SerializedName("_songAuthorName") val _songAuthorName: String,
-	@SerializedName("_levelAuthorName") val _levelAuthorName: String,
-	@SerializedName("_beatsPerMinute") val _beatsPerMinute: Int,
-	@SerializedName("_songTimeOffset") val _songTimeOffset: Int,
-	@SerializedName("_shuffle") val _shuffle: Int,
-	@SerializedName("_shufflePeriod") val _shufflePeriod: Int,
-	@SerializedName("_previewStartTime") val _previewStartTime: Int,
-	@SerializedName("_previewDuration") val _previewDuration: Int,
-	@SerializedName("_songFilename") val _songFilename: String,
-	@SerializedName("_coverImageFilename") val _coverImageFilename: String,
-	@SerializedName("_environmentName") val _environmentName: String,
-	@SerializedName("_difficultyBeatmapSets") val _difficultyBeatmapSets: List<_difficultyBeatmapSets>
+	@SerializedName("_beatmapCharacteristicName") val _beatmapCharacteristicName : String,
+	@SerializedName("_difficultyBeatmaps") val _difficultyBeatmaps : List<_difficultyBeatmaps>
 )

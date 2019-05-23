@@ -3,9 +3,9 @@ import java.io.IOException
 
 fun main() {
     val p = getPath()
-    val songlist = SongList(p)
-    songlist.refreshSong()
-    songlist.listSongs()
+    val songList = SongList(p)
+    songList.refreshSong()
+    songList.listSongs()
 
 
     //var path = getStorage()
@@ -14,6 +14,7 @@ fun main() {
 }
 
 //tries to get the default steam path, if that fails, the user has to manually add it
+@Suppress("UNREACHABLE_CODE")
 fun getPath():Path{
     var songPath = Paths.get(System.getenv("ProgramFiles(X86)"), "Steam", "steamapps", "common", "Beat Saber", "WIP Songs")
     try {

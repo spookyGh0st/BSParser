@@ -1,15 +1,16 @@
-import java.io.File
+import com.google.gson.Gson
 import java.io.IOException
-import java.io.Reader
 import java.nio.file.Path
 import java.nio.file.Paths
+
+
 
 class SongList(val path: Path){
     val list = arrayListOf<Song>()
 
 
     fun listSongs(){
-        list.forEach { println(it.path) }
+        list.forEach { println(it._beatsPerMinute) }
     }
 
     //looks in the path directory for every songs
@@ -27,8 +28,9 @@ class SongList(val path: Path){
 
     }
     private fun addSong(p: Path){
-        println(p.toString())
         val yml:String = Paths.get(p.toString(), "info.json").toFile().readText()
-
+        val s1 = Gson().fromJson(yml, Song::class.java)
+        //s1.path = p
+        list.add(s1)
     }
 }

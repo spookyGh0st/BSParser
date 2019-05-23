@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Parser.iml" filepath="$PROJECT_DIR$/Parser.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/json helper.json_helper.main.iml" filepath="$PROJECT_DIR$/.idea/modules/json helper.json_helper.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/json helper.json_helper.test.iml" filepath="$PROJECT_DIR$/.idea/modules/json helper.json_helper.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/json_helper.main.iml" filepath="$PROJECT_DIR$/.idea/modules/json_helper.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/json_helper.test.iml" filepath="$PROJECT_DIR$/.idea/modules/json_helper.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BSParser.iml" filepath="$PROJECT_DIR$/BSParser.iml" />
     </modules>
   </component>
 </project>
