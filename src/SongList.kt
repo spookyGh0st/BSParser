@@ -1,4 +1,6 @@
+import java.io.File
 import java.io.IOException
+import java.io.Reader
 import java.nio.file.Path
 import java.nio.file.Paths
 
@@ -16,12 +18,17 @@ class SongList(val path: Path){
         try {
             path.toFile().walk().maxDepth(1).forEach {
                 if (it.isDirectory &&  Paths.get(it.toString(),"info.json").toFile().exists()){
-                    list.add(Song(it.toPath()))
+                    addSong(it.toPath())
                 }
             }
         } catch (e: IOException) {
             killmeplease(e.message)
         }
+
+    }
+    private fun addSong(p: Path){
+        println(p.toString())
+        val yml:String = Paths.get(p.toString(), "info.json").toFile().readText()
 
     }
 }

@@ -45,7 +45,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="json_helper.main" />
+    <orderEntry type="module" module-name="json helper.json_helper.main" />
   </component>
   <component name="TestModuleProperties" production-module="json_helper.main" />
 </module>
