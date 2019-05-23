@@ -10,7 +10,7 @@ class SongList(val path: Path){
 
 
     fun listSongs(){
-        list.forEach { println(it._difficultyBeatmapSets[0]._difficultyBeatmaps[0]._difficulty) }
+        list.forEach { println(it._songName)}
     }
 
     //looks in the path directory for every songs
