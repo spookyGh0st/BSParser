@@ -10,7 +10,7 @@ class SongList(val path: Path){
 
 
     fun listSongs(){
-        list.forEach { println(it._beatsPerMinute) }
+        list.forEach { println(it._difficultyBeatmapSets[0]._difficultyBeatmaps[0]._difficulty) }
     }
 
     //looks in the path directory for every songs
@@ -18,7 +18,7 @@ class SongList(val path: Path){
         list.clear()
         try {
             path.toFile().walk().maxDepth(1).forEach {
-                if (it.isDirectory &&  Paths.get(it.toString(),"info.json").toFile().exists()){
+                if (it.isDirectory &&  Paths.get(it.toString(),"info.dat").toFile().exists()){
                     addSong(it.toPath())
                 }
             }
@@ -28,7 +28,7 @@ class SongList(val path: Path){
 
     }
     private fun addSong(p: Path){
-        val yml:String = Paths.get(p.toString(), "info.json").toFile().readText()
+        val yml:String = Paths.get(p.toString(), "info.dat").toFile().readText()
         val s1 = Gson().fromJson(yml, Song::class.java)
         //s1.path = p
         list.add(s1)
