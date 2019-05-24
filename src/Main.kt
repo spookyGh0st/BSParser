@@ -1,6 +1,11 @@
+import java.nio.file.Path
+
 fun main() {
     println("Using WIP-Folder: "+Reader.path)
-    Reader.writeSettings()
+    val songlist = SongList(Path.of(Reader.settings.path))
+    println(songlist.returnCurrentSong()._songName)
+
+
     //val songList = null
     //songList.refreshSong()
     //songList.listSongs()

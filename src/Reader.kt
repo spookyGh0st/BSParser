@@ -68,7 +68,6 @@ object Reader {
         }
     }
 
-    //TODO make private
     fun writeSettings(){
         val writer = FileWriter(settingsPath.toFile())
         val text = Gson().toJson(settings)

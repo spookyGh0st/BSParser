@@ -14,5 +14,5 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 data class Settings (
 	@SerializedName("path") var path : String,
-	@SerializedName("currentSong") val currentSong : String
+	@SerializedName("currentSong") var currentSong : String
 )
