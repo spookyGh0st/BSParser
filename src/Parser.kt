@@ -4,6 +4,7 @@ import java.io.File
 import java.io.FileReader
 import java.io.IOException
 import java.nio.file.Paths
+import javax.print.DocFlavor
 
 class Parser(val song:Song) {
     var easyJson = readDifficulty("Easy.dat")
@@ -34,10 +35,9 @@ class Parser(val song:Song) {
         println("2/3")
         hardDifficulty._events = hardDifficulty._events.sortedBy { it._time }
         println("3/3")
-        //TODO write hardDifficulty
-
+        Reader.writeDifficulty(hardDifficulty)
+        println("Written file ,exiting")
     }
-
 
     private fun readDifficulty(difficulty: String):String{
         return try{
@@ -46,7 +46,7 @@ class Parser(val song:Song) {
             val ergebniss = reader.readLine()
             reader.close()
             ergebniss
-        }catch (e:IOException) {
+        }catch (e:Exception) {
             killmeplease(e.message)
             ""
         }

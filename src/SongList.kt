@@ -37,7 +37,7 @@ class SongList(val path: Path){
 
     //who the fucks needs documentation for this
     fun listSongs(){
-        println("\nList of all Songs:")
+        println("\nList of all Songs: (only new format)")
         list.forEach { println(it._songName)}
     }
 

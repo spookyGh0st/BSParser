@@ -8,12 +8,6 @@ fun main() {
 }
 
 
-
-
-
-
-
-
 //kills the process and displays the error message
 fun killmeplease(a:String?){
     println(a)

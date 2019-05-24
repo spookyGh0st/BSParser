@@ -69,10 +69,29 @@ object Reader {
     }
 
     fun writeSettings(){
-        val writer = FileWriter(settingsPath.toFile())
-        val text = Gson().toJson(settings)
-        writer.write(text)
-        writer.close()
+        try {
+
+            val writer = FileWriter(settingsPath.toFile())
+            val text = Gson().toJson(settings)
+            println(text)
+            writer.write(text)
+            writer.close()
+        }catch (e:Exception){
+            killmeplease(e.message)
+        }
+    }
+
+    fun writeDifficulty(d:Difficulty){
+        try{
+            val writer = FileWriter(d.path.toFile())
+            val text = Gson().toJson(d)
+            //println(text)
+            writer.write(text)
+            writer.close()
+        }catch (e:Exception){
+            killmeplease(e.message)
+        }
+
     }
 
 
