@@ -14,11 +14,10 @@ class Parser(val song:Song) {
     val hardDifficulty = createDifficulty(hardJson,difficulty.hard)
 
 
-    fun readDifficulty(difficulty: String):String{
+    private fun readDifficulty(difficulty: String):String{
         return try{
             val file = File(song.path.toString(), difficulty)
             val reader =BufferedReader(FileReader(file))
-            println(file.toString())
             val ergebniss = reader.readLine()
             reader.close()
             ergebniss
@@ -27,7 +26,7 @@ class Parser(val song:Song) {
             ""
         }
     }
-    fun createDifficulty(json:String,difficulty: difficulty):Difficulty {
+    private fun createDifficulty(json:String, difficulty: difficulty):Difficulty {
         val d = Gson().fromJson(json, Difficulty::class.java)
         d.difficulty = difficulty.difString
         d.path = Paths.get(song.path.toString(), "${d.difficulty}.dat")
