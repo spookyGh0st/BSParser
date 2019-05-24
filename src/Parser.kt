@@ -14,6 +14,31 @@ class Parser(val song:Song) {
     val hardDifficulty = createDifficulty(hardJson,DiffEnum.hard)
 
 
+    fun parse(){
+        println("\n\nEditing ${Reader.settings.currentSong}")
+        println("\nModifying normal map and merging it with easy map into the hard map")
+        println("this cannot be reverted. Continue? (y/n)")
+        if (readLine()?.toLowerCase()  != "y")
+            killmeplease("Exiting...")
+        normalDifficulty._events.forEach {
+            when(it._type){
+                0 -> it._type= 5
+                1 -> it._type = 6
+                2 -> it._type = 7
+                3 -> it._type = 10
+                4 -> it._type = 11
+            }
+        }
+        println("1/3")
+        hardDifficulty._events = easyDifficulty._events.plus(normalDifficulty._events)
+        println("2/3")
+        hardDifficulty._events = hardDifficulty._events.sortedBy { it._time }
+        println("3/3")
+        //TODO write hardDifficulty
+
+    }
+
+
     private fun readDifficulty(difficulty: String):String{
         return try{
             val file = File(song.path.toString(), difficulty)
