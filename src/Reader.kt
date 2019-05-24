@@ -73,6 +73,7 @@ object Reader {
         val text = Gson().toJson(settings)
         writer.write(text)
         writer.close()
-
     }
+
+
 }
