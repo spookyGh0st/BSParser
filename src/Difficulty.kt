@@ -15,7 +15,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 data class Difficulty (
 
-	var difficulty: String,
+	var difficulty: DiffEnum,
 	var path: Path,
 	@SerializedName("_version") val _version : String,
 	@SerializedName("_events") val _events : List<_events>,
