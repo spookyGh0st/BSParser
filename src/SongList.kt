@@ -53,12 +53,12 @@ class SongList(val path: Path){
         } catch (e: IOException) {
             killmeplease(e.message)
         }
-
     }
+
     private fun addSong(p: Path){
         val yml:String = Paths.get(p.toString(), "info.dat").toFile().readText()
         val s1 = Gson().fromJson(yml, Song::class.java)
-        //s1.path = p
+        s1.path = p
         list.add(s1)
     }
 }

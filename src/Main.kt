@@ -3,19 +3,13 @@ import java.nio.file.Path
 fun main() {
     println("Using WIP-Folder: "+Reader.path)
     val songlist = SongList(Path.of(Reader.settings.path))
-    println(songlist.returnCurrentSong()._songName)
-
-
-    //val songList = null
-    //songList.refreshSong()
-    //songList.listSongs()
-
-
-    //var path = getStorage()
+    val parser = Parser(songlist.returnCurrentSong())
+    println(parser.easy)
+    println(parser.normal)
+    println(parser.hard)
 }
 
 
-//TODO create object class which handles files
 
 
 

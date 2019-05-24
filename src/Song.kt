@@ -15,7 +15,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 data class Song (
 
-	//var path: Path? = null,
+	var path: Path? = null,
 	@SerializedName("_version") val _version: String,
 	@SerializedName("_songName") val _songName: String,
 	@SerializedName("_songSubName") val _songSubName: String,
