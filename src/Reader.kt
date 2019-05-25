@@ -13,7 +13,7 @@ object Reader {
     val path = returnPath()
 
     //tries to return a settings file via the json variable, if it fails or creates an exeption ressets the file
-    private fun setSettings(): Settings{
+    fun setSettings(): Settings{
         return try {
             var s: Settings? = Gson().fromJson(json, Settings::class.java)
             if (s == null) {

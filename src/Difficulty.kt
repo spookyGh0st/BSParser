@@ -17,7 +17,7 @@ data class Difficulty (
 
 	@Transient var difficulty: DiffEnum,
 	@Transient var path: Path,
-	@SerializedName("_version") val _version : String,
+	@SerializedName("_version") var _version : String,
 	@SerializedName("_events") var _events : List<_events>,
 	@SerializedName("_notes") val _notes : List<_notes>,
 	@SerializedName("_obstacles") val _obstacles : List<_obstacles>

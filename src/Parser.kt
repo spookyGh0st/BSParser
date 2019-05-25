@@ -2,9 +2,7 @@ import com.google.gson.Gson
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
-import java.io.IOException
 import java.nio.file.Paths
-import javax.print.DocFlavor
 
 class Parser(val song:Song) {
     var easyJson = readDifficulty("Easy.dat")
@@ -18,8 +16,9 @@ class Parser(val song:Song) {
     fun parse(){
         println("\n\nEditing ${Reader.settings.currentSong}")
         println("\nModifying normal map and merging it with easy map into the hard map")
-        println("this cannot be reverted. Continue? (y/n)")
-        if (readLine()?.toLowerCase()  != "y")
+        println("this cannot be reverted. Continue? (y/n)  ")
+        val input =readLine()?.toLowerCase()
+        if (input != "y")
             killmeplease("Exiting...")
         normalDifficulty._events.forEach {
             when(it._type){
@@ -47,14 +46,16 @@ class Parser(val song:Song) {
             reader.close()
             ergebniss
         }catch (e:Exception) {
-            killmeplease(e.message)
             ""
         }
     }
     private fun createDifficulty(json:String, DiffEnum: DiffEnum):Difficulty {
-        val d = Gson().fromJson(json, Difficulty::class.java)
-        d.difficulty = DiffEnum
-        d.path = Paths.get(song.path.toString(), "${d.difficulty}.dat")
-        return d
+        val d:Difficulty
+            d = Gson().fromJson(json, Difficulty::class.java)
+            d.difficulty = DiffEnum
+            d.path = Paths.get(song.path.toString(), "${d.difficulty}.dat")
+            return d
+
+       //TODO write this method good
     }
 }

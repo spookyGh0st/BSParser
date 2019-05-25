@@ -55,6 +55,7 @@ class SongList(val path: Path){
         }
     }
 
+    //adds a song under the given Path to the playlist
     private fun addSong(p: Path){
         val yml:String = Paths.get(p.toString(), "info.dat").toFile().readText()
         val s1 = Gson().fromJson(yml, Song::class.java)
