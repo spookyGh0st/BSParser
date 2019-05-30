@@ -1,3 +1,5 @@
+package Models
+
 import com.google.gson.annotations.SerializedName
 
 /*
@@ -15,5 +17,5 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 data class _difficultyBeatmapSets (
 
 	@SerializedName("_beatmapCharacteristicName") val _beatmapCharacteristicName : String,
-	@SerializedName("_difficultyBeatmaps") val _difficultyBeatmaps : List<_difficultyBeatmaps>
+	@SerializedName("Models._difficultyBeatmaps") val _difficultyBeatmaps : List<_difficultyBeatmaps>
 )

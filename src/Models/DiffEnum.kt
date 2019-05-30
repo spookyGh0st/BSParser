@@ -1,3 +1,5 @@
+package Models
+
 enum class DiffEnum(val difString: String){
     easy("Easy"),
     normal("Normal"),

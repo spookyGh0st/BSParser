@@ -1,3 +1,5 @@
+package Models
+
 import com.google.gson.annotations.SerializedName
 
 /*
@@ -12,11 +14,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
-data class _obstacles (
+data class _events (
 
 	@SerializedName("_time") val _time : Double,
-	@SerializedName("_lineIndex") val _lineIndex : Double,
-	@SerializedName("_type") val _type : Int,
-	@SerializedName("_duration") val _duration : Double,
-	@SerializedName("_width") val _width : Double
+	@SerializedName("_type") var _type : Int,
+	@SerializedName("_value") val _value : Int
 )

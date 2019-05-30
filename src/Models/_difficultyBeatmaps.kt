@@ -1,3 +1,5 @@
+package Models
+
 import com.google.gson.annotations.SerializedName
 
 /*
@@ -12,9 +14,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
-data class _events (
+data class _difficultyBeatmaps (
 
-	@SerializedName("_time") val _time : Double,
-	@SerializedName("_type") var _type : Int,
-	@SerializedName("_value") val _value : Int
+	@SerializedName("_difficulty") val _difficulty : String,
+	@SerializedName("_difficultyRank") val _difficultyRank : Int,
+	@SerializedName("_beatmapFilename") val _beatmapFilename : String,
+	@SerializedName("_noteJumpMovementSpeed") val _noteJumpMovementSpeed : Double,
+	@SerializedName("_noteJumpStartBeatOffset") val _noteJumpStartBeatOffset : Double
 )

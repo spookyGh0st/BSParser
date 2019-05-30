@@ -1,3 +1,5 @@
+package Models
+
 import com.google.gson.Gson
 import java.io.IOException
 import java.lang.Exception
@@ -12,23 +14,13 @@ class SongList(val path: Path){
         refreshSong()
     }
 
-    fun returnCurrentSong():Song{
+    fun returnCurrentSong(): Song? {
         try {
             var s = Reader.settings.currentSong
             list.forEach {
                 if (it._songName == s) return it
             }
-            listSongs()
-            println("\nFailed to find current song, please enter Song name (case-sensitive): ")
-            s = readLine().toString()
-            list.forEach {
-                if (it._songName == s) {
-                    Reader.settings.currentSong=s
-                    Reader.writeSettings()
-                    return it
-                }
-            }
-            return returnCurrentSong()
+            return null
         }catch (e:Exception){
             killmeplease(e.message)
             return list[0]
