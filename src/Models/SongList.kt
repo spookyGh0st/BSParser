@@ -12,6 +12,7 @@ class SongList(val path: Path){
     val list = arrayListOf<Song>()
     init {
         refreshSong()
+        CurrentSong.setCurrentSong(returnCurrentSong())
     }
 
     fun returnCurrentSong(): Song? {
@@ -50,8 +51,9 @@ class SongList(val path: Path){
     //adds a song under the given Path to the playlist
     private fun addSong(p: Path){
         val yml:String = Paths.get(p.toString(), "info.dat").toFile().readText()
-        val s1 = Gson().fromJson(yml, Song::class.java)
-        s1.path = p
-        list.add(s1)
+        val s = Gson().fromJson(yml, Song::class.java)
+        s.path = p
+        s.songsDifficulties = Reader.readDifficulty(p)
+        list.add(s)
     }
 }

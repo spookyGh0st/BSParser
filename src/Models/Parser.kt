@@ -52,12 +52,11 @@ class Parser(val song: Song) {
         }
     }
     private fun createDifficulty(json:String, DiffEnum: DiffEnum): Difficulty {
-        val d: Difficulty
-            d = Gson().fromJson(json, Difficulty::class.java)
-            d.difficulty = DiffEnum
-            d.path = Paths.get(song.path.toString(), "${d.difficulty}.dat")
-            return d
+        val d: Difficulty = Gson().fromJson(json, Difficulty::class.java)
+        d.difficulty = DiffEnum
+        d.path = Paths.get(song.path.toString(), "${d.difficulty}.dat")
+        return d
 
-       //TODO write this method good
+        //TODO write this method good
     }
 }

@@ -1,7 +1,7 @@
 package Models
 
 object CurrentSong {
-    private val currentSong: Song? = null
+    private var currentSong: Song? = null
 
 
     fun getCS():Song?{
@@ -14,5 +14,9 @@ object CurrentSong {
 
     private fun returnCS(): Song? {
         return SongList(WIPPath.getPath()!!).returnCurrentSong()
+    }
+    fun setCurrentSong(song: Song?){
+        currentSong=song
+        Reader.writeSettings()
     }
 }

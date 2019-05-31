@@ -18,6 +18,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 data class Song (
 
 	@Transient var  path: Path? = null,
+	@Transient var songsDifficulties: ArrayList<Difficulty> = arrayListOf<Difficulty>(),
 	@SerializedName("_version") val _version: String,
 	@SerializedName("_songName") val _songName: String,
 	@SerializedName("_songSubName") val _songSubName: String,
@@ -32,5 +33,5 @@ data class Song (
 	@SerializedName("_songFilename") val _songFilename: String,
 	@SerializedName("_coverImageFilename") val _coverImageFilename: String,
 	@SerializedName("_environmentName") val _environmentName: String,
-	@SerializedName("Models._difficultyBeatmapSets") val _difficultyBeatmapSets: List<_difficultyBeatmapSets>
+	@SerializedName("_difficultyBeatmapSets") val _difficultyBeatmapSets: ArrayList<_difficultyBeatmapSets>
 )

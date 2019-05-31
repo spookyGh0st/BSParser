@@ -1,8 +1,7 @@
 package Models
 
 import com.google.gson.Gson
-import java.io.FileWriter
-import java.io.IOException
+import java.io.*
 import java.lang.Exception
 import java.nio.file.Paths
 
@@ -54,6 +53,27 @@ object Reader {
     }
 
 
+    fun readDifficulty(p:java.nio.file.Path?): ArrayList<Difficulty> {
+        val a = arrayListOf<Difficulty>()
+
+        for(i in 0 until DiffEnum.values().size){
+            val file = File (p.toString(),DiffEnum.values()[i].toString() + ".dat")
+            if (file.exists()){
+                val d:Difficulty= createDifficulty(file)
+                d.path=file.toPath()
+                d.difficulty=DiffEnum.values()[i]
+                a.add(d)
+            }
+        }
+        return a
+    }
+
+    private fun createDifficulty(file: File):Difficulty{
+        val reader = BufferedReader(FileReader(file))
+        val difficultyJson = reader.readText()
+        reader.close()
+        return Gson().fromJson(difficultyJson, Difficulty::class.java)
+    }
 
     fun writeDifficulty(d: Difficulty){
         try{

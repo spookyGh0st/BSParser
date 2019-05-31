@@ -1,7 +1,8 @@
 package View
 
-import javafx.scene.paint.Color
+
 import Controller.MyController
+import javafx.scene.Parent
 import javafx.stage.StageStyle
 import tornadofx.*
 
@@ -16,12 +17,10 @@ class MainView: View(){
             vbox {
                 hbox(spacing=20) {
                     text("Path:")
-                    val pathText = text(controller.path){
-                        fill = Color.DARKORCHID
-                    }
+                    val pathText = text(controller.path){}
                     button("change"){
                         action {
-                            pathText.text = controller.getDir()
+                            pathText.text =controller.getDir()
                         }
                         hboxConstraints { }
                     }
@@ -29,19 +28,18 @@ class MainView: View(){
                 hbox {
                     spacing = 20.0
                     text("current Song:")
-                    val songText = text(controller.getCS()){
-                        fill = Color.DARKORCHID
-                    }
+                    val songText = text(controller.getCS())
                     button("change"){
                         action {
-                            find<SongPicker>().openModal(stageStyle = StageStyle.UTILITY)
+                            find<SongPicker>().openModal(block = true,stageStyle = StageStyle.UTILITY)
+                            songText.text = controller.getCS()
                         }
                     }
                 }
                 tabpane {
 
-//                    tab<Screen1>()
-//                    tab<Screen2>()
+                    tab<VaporFrame>()
+                    tab("Screen2")
 //                    tab<Screen3>()
                 }
             }
