@@ -1,11 +1,12 @@
 package View
 
 import Models.CurrentSong
-import Models.Song
 import javafx.beans.property.SimpleStringProperty
 import javafx.collections.FXCollections
 import javafx.scene.text.Text
 import tornadofx.*
+import Controller.MyController
+
 
 class VaporFrame : View("Vapor Frame") {
     var cs = CurrentSong.getCS()
@@ -15,6 +16,7 @@ class VaporFrame : View("Vapor Frame") {
     var finalLightsDifficulty = SimpleStringProperty()
     var csProperty = SimpleStringProperty(cs?._songName)
     var label:Text by singleAssign()
+    val controller: MyController by inject()
 
 
 
@@ -36,9 +38,7 @@ class VaporFrame : View("Vapor Frame") {
         combobox(finalLightsDifficulty,difficulties)
         button("create"){
             action {
-                println(normalLightsDifficulty.value)
-
-
+                parse()
             }
 
         }
@@ -53,5 +53,9 @@ class VaporFrame : View("Vapor Frame") {
     }
     init{
         refresh()
+    }
+    fun parse(){
+        controller.parseVaporFrame(cs,normalLightsDifficulty.value,highwayLightsDifficulty.value,finalLightsDifficulty.value)
+        close()
     }
 }

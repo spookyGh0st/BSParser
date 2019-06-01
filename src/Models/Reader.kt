@@ -77,9 +77,8 @@ object Reader {
 
     fun writeDifficulty(d: Difficulty){
         try{
-            val writer = FileWriter(d.path.toFile())
             val text = Gson().toJson(d)
-            //println(text)
+            val writer = BufferedWriter(FileWriter(d.path.toFile()))
             writer.write(text)
             writer.close()
         }catch (e:Exception){
