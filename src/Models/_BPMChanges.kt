@@ -1,8 +1,6 @@
 package Models
 
 import com.google.gson.annotations.SerializedName
-import java.nio.file.Path
-
 /*
 Copyright (c) 2019 Kotlin Data Classes Generated from JSON powered by http://www.json2kotlin.com
 
@@ -15,13 +13,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
-data class Difficulty (
+data class _BPMChanges (
 
-    @Transient var difficulty: DiffEnum,
-    @Transient var path: Path,
-    @SerializedName("_version") var _version : String,
-    @SerializedName("_BPMChanges") val _BPMChanges : List<_BPMChanges>,
-    @SerializedName("_events") var _events : List<_events>,
-    @SerializedName("_notes") val _notes : List<_notes>,
-    @SerializedName("_obstacles") val _obstacles : List<_obstacles>
+	@SerializedName("_BPM") val _BPM : Double,
+	@SerializedName("_time") val _time : Double,
+	@SerializedName("_beatsPerBar") val _beatsPerBar : Int,
+	@SerializedName("_metronomeOffset") val _metronomeOffset : Double
 )

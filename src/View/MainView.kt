@@ -39,7 +39,7 @@ class MainView: View(){
                 tabpane {
 
                     tab<VaporFrame>()
-                    tab("Screen2")
+                    tab<ConcertCreator>()
 //                    tab<Screen3>()
                 }
             }
