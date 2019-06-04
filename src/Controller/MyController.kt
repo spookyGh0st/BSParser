@@ -8,7 +8,6 @@ import tornadofx.chooseDirectory
 class MyController:Controller() {
     var path:String?
     var sl:SongList?
-    var parser = Parser()
 
     fun getDir():String {
         path = chooseDirectory(title = "WIP-Path")?.toString() ?: path
@@ -35,13 +34,26 @@ class MyController:Controller() {
             println("success")
             cs?.songsDifficulties?.forEach{
                 when {
-                    it.difficulty.toString() == nLD -> normalLightsDifficulty = it
-                    it.difficulty.toString() == hLD -> highwayLightsDifficulty = it
-                    it.difficulty.toString() == fLD -> finalLightsDifficulty = it
+                    it.difficulty.difString == nLD -> normalLightsDifficulty = it
+                    it.difficulty.difString == hLD -> highwayLightsDifficulty = it
+                    it.difficulty.difString == fLD -> finalLightsDifficulty = it
                 }
             }
-            parser.parseVaporFrame(normalLightsDifficulty!!, highwayLightsDifficulty!!, finalLightsDifficulty!!)
+            parseVaporFrame(normalLightsDifficulty!!, highwayLightsDifficulty!!, finalLightsDifficulty!!)
         }
+    }
+
+    fun concertCreator(bBPM: Double?, d:Difficulty, listOfNames: List<SimpleStringProperty>) {
+
+        if (sl == null)return
+        val listOfSongs = arrayListOf<Song?>()
+        listOfNames.forEach {
+            val name = it.value
+            if (sl?.containsSong(it.value)!=null)
+                listOfSongs.add(sl!!.containsSong(it.value))
+        }
+        listOfSongs.forEach { println(it?._songName) }
+        parseConcertCreator(bBPM, d,listOfSongs)
     }
 
 

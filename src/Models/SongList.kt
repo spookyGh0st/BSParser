@@ -14,6 +14,10 @@ class SongList(val path: Path){
         refreshSong()
         CurrentSong.setCurrentSong(returnCurrentSong())
     }
+    fun containsSong(s:String): Song? {
+        list.forEach { if (it._songName == s) return it }
+        return null
+    }
 
     fun returnCurrentSong(): Song? {
         try {

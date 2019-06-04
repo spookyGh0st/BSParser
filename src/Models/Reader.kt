@@ -57,7 +57,7 @@ object Reader {
         val a = arrayListOf<Difficulty>()
 
         for(i in 0 until DiffEnum.values().size){
-            val file = File (p.toString(),DiffEnum.values()[i].toString() + ".dat")
+            val file = File (p.toString(),DiffEnum.values()[i].difString + ".dat")
             if (file.exists()){
                 val d:Difficulty= createDifficulty(file)
                 d.path=file.toPath()

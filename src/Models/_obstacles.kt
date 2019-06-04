@@ -16,9 +16,9 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 data class _obstacles (
 
-	@SerializedName("_time") val _time : Double,
-	@SerializedName("_lineIndex") val _lineIndex : Double,
-	@SerializedName("_type") val _type : Int,
-	@SerializedName("_duration") val _duration : Double,
-	@SerializedName("_width") val _width : Double
+    @SerializedName("_time") var _time : Double,
+    @SerializedName("_lineIndex") val _lineIndex : Double,
+    @SerializedName("_type") val _type : Int,
+    @SerializedName("_duration") val _duration : Double,
+    @SerializedName("_width") val _width : Double
 )

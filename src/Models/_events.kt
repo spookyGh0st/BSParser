@@ -16,7 +16,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 data class _events (
 
-	@SerializedName("_time") val _time : Double,
+	@SerializedName("_time") var _time : Double,
 	@SerializedName("_type") var _type : Int,
 	@SerializedName("_value") val _value : Int
 )

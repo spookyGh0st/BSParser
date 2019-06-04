@@ -4,13 +4,8 @@ import tornadofx.*
 import Controller.MyController
 import Models.CurrentSong
 import Models.Difficulty
-import Models.Song
-import javafx.beans.property.ReadOnlyListProperty
 import javafx.beans.property.SimpleStringProperty
 import javafx.collections.FXCollections
-import javafx.scene.control.ScrollPane
-import javafx.scene.control.SelectionMode
-import javafx.scene.control.TableView
 import javafx.scene.layout.VBox
 import javafx.scene.text.Text
 
@@ -58,12 +53,8 @@ class ConcertCreator : View("Concert Creator"){
             }
         }
         scrollpane(true, false) {
+            useMaxHeight = true
             SelectionVBOX = vbox { }
-        }
-        button("test"){
-            action {
-                SelectedSongs.forEach { println(it.value.toString()) }
-            }
         }
         refresh(true)
     }
@@ -71,6 +62,7 @@ class ConcertCreator : View("Concert Creator"){
         SelectionVBOX.clear()
         if (i == 0)
             return
+        allsongs.removeAt(allsongs.indexOf(cs?._songName))
         SelectedSongs.clear()
         with(SelectionVBOX){
             for (j in 0 until i) {
@@ -84,8 +76,17 @@ class ConcertCreator : View("Concert Creator"){
                 }
 
             }
+
+            label("")
+            button("parse"){
+                action { parse() }
+            }
         }
 
+    }
+    fun parse(){
+        controller.concertCreator(cs?._beatsPerMinute,getDifficulty()!!,SelectedSongs.toList())
+        close()
     }
 
 
@@ -94,7 +95,7 @@ class ConcertCreator : View("Concert Creator"){
             cs = CurrentSong.getCS()
             difficulties.clear()
             cs?.songsDifficulties?.forEach {
-                difficulties.add(it.difficulty.toString())
+                difficulties.add(it.difficulty.difString)
             }
             csDifficulty.value = null
             csName.text = cs?._songName ?: ""
@@ -107,7 +108,7 @@ class ConcertCreator : View("Concert Creator"){
     }
     fun getDifficulty(): Difficulty? {
         cs?.songsDifficulties?.forEach {
-            if (it.difficulty.toString() == csDifficulty.value)
+            if (it.difficulty.difString == csDifficulty.value)
                 return it
         }
         return null

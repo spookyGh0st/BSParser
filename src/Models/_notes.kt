@@ -16,9 +16,9 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 data class _notes (
 
-	@SerializedName("_time") val _time : Double,
-	@SerializedName("_lineIndex") val _lineIndex : Double,
-	@SerializedName("_lineLayer") val _lineLayer : Double,
-	@SerializedName("_type") val _type : Int,
-	@SerializedName("_cutDirection") val _cutDirection : Double
+    @SerializedName("_time") var _time : Double,
+    @SerializedName("_lineIndex") val _lineIndex : Double,
+    @SerializedName("_lineLayer") val _lineLayer : Double,
+    @SerializedName("_type") val _type : Int,
+    @SerializedName("_cutDirection") val _cutDirection : Double
 )

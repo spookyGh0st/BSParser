@@ -22,6 +22,6 @@ data class Difficulty (
     @SerializedName("_version") var _version : String,
     @SerializedName("_BPMChanges") val _BPMChanges : List<_BPMChanges>,
     @SerializedName("_events") var _events : List<_events>,
-    @SerializedName("_notes") val _notes : List<_notes>,
-    @SerializedName("_obstacles") val _obstacles : List<_obstacles>
+    @SerializedName("_notes") var _notes : List<_notes>,
+    @SerializedName("_obstacles") var _obstacles : List<_obstacles>
 )
