@@ -95,7 +95,7 @@ class ConcertCreator : View("Concert Creator"){
             cs = CurrentSong.getCS()
             difficulties.clear()
             cs?.songsDifficulties?.forEach {
-                difficulties.add(it.difficulty.difString)
+                difficulties.add(it?.difficulty?.difString)
             }
             csDifficulty.value = null
             csName.text = cs?._songName ?: ""
@@ -108,8 +108,10 @@ class ConcertCreator : View("Concert Creator"){
     }
     fun getDifficulty(): Difficulty? {
         cs?.songsDifficulties?.forEach {
-            if (it.difficulty.difString == csDifficulty.value)
-                return it
+            if (it != null) {
+                if (it.difficulty.difString == csDifficulty.value)
+                    return it
+            }
         }
         return null
     }

@@ -40,6 +40,7 @@ class MainView: View(){
 
                     tab<VaporFrame>()
                     tab<ConcertCreator>()
+                    tab<DownMapper>()
 //                    tab<Screen3>()
                 }
             }

@@ -53,8 +53,8 @@ object Reader {
     }
 
 
-    fun readDifficulty(p:java.nio.file.Path?): ArrayList<Difficulty> {
-        val a = arrayListOf<Difficulty>()
+    fun readDifficulty(p:java.nio.file.Path?): ArrayList<Difficulty?> {
+        val a = arrayListOf<Difficulty?>()
 
         for(i in 0 until DiffEnum.values().size){
             val file = File (p.toString(),DiffEnum.values()[i].difString + ".dat")
@@ -63,6 +63,8 @@ object Reader {
                 d.path=file.toPath()
                 d.difficulty=DiffEnum.values()[i]
                 a.add(d)
+            }else{
+                a.add(null)
             }
         }
         return a

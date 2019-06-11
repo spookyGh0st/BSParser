@@ -22,6 +22,7 @@ class MyController:Controller() {
 
     fun pickCS(song:Song?){
         CurrentSong.setCurrentSong(song)
+        mapdown()
     }
 
     fun parseVaporFrame(cs: Song?, nLD: String?, hLD: String?, fLD: String?) {
@@ -33,10 +34,12 @@ class MyController:Controller() {
         else{
             println("success")
             cs?.songsDifficulties?.forEach{
-                when {
-                    it.difficulty.difString == nLD -> normalLightsDifficulty = it
-                    it.difficulty.difString == hLD -> highwayLightsDifficulty = it
-                    it.difficulty.difString == fLD -> finalLightsDifficulty = it
+                if (it != null) {
+                    when {
+                        it.difficulty.difString == nLD -> normalLightsDifficulty = it
+                        it.difficulty.difString == hLD -> highwayLightsDifficulty = it
+                        it.difficulty.difString == fLD -> finalLightsDifficulty = it
+                    }
                 }
             }
             parseVaporFrame(normalLightsDifficulty!!, highwayLightsDifficulty!!, finalLightsDifficulty!!)

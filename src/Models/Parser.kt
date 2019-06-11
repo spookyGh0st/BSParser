@@ -1,6 +1,8 @@
 package Models
 
 import java.io.File
+import java.nio.file.Paths
+import kotlin.test.todo
 
 
 fun parseVaporFrame(normalLightsDifficulty: Difficulty, highwayLightsDifficulty: Difficulty,finalLightsDifficulty: Difficulty){
@@ -22,10 +24,28 @@ fun parseVaporFrame(normalLightsDifficulty: Difficulty, highwayLightsDifficulty:
     Reader.writeDifficulty(finalLightsDifficulty)
     println("Written file ,exiting")
 }
+fun mapdown(){
+    val cs = CurrentSong.getCS() ?: return
+    for (i in DiffEnum.values().size-1 downTo  1){
+        if(cs.songsDifficulties[i]==null)
+            continue
+        if(cs.songsDifficulties[i-1] == null) {
+            cs.songsDifficulties[i-1] = cs.songsDifficulties[i]?.copy()
+            cs.songsDifficulties[i-1]!!.difficulty = DiffEnum.values()[i-1]
+            cs.songsDifficulties[i-1]!!.path = Paths.get(cs.songsDifficulties[i-1]!!.path.toString().replace(DiffEnum.values()[i].difString, DiffEnum.values()[i-1].difString))
+        }
+        mapDifficulty(cs.songsDifficulties[i], cs.songsDifficulties[i-1])
+    }
+}
+fun mapDifficulty(currentD:Difficulty?, lowerD:Difficulty?){
+    println((currentD!!.difficulty?.difString ?: "test") +""+ (lowerD?.difficulty?.difString ?: "test"))
+    //todo all the hard wordk
+
+}
 
 fun parseConcertCreator(targetBPM: Double?, d:Difficulty, songList: ArrayList<Song?>){
 
-    //createBackup(d)
+    createBackup(d)
 
     val list = arrayListOf<Difficulty?>()
     songList.forEach {  list.add(getExpertPlusDifficulty(it)) }
@@ -67,13 +87,16 @@ fun parseConcertCreator(targetBPM: Double?, d:Difficulty, songList: ArrayList<So
 
 
 fun getExpertPlusDifficulty(s:Song?):Difficulty?{
-    s?.songsDifficulties?.forEach { if(it.difficulty.difString == "ExpertPlus")
+    s?.songsDifficulties?.forEach { if(it?.difficulty?.difString ?: "" == "ExpertPlus")
         return it
     }
     return null
 }
 
+
+
 fun createBackup(d:Difficulty){
-    d.path = File("${d.path}.old").toPath()
-    Reader.writeDifficulty(d)
+    val dback = d
+    dback.path = File("${d.path}.old").toPath()
+    Reader.writeDifficulty(dback)
 }

@@ -47,7 +47,9 @@ class VaporFrame : View("Vapor Frame") {
         cs = CurrentSong.getCS()
         difficulties.clear()
         cs?.songsDifficulties?.forEach {
-            difficulties.add(it.difficulty.difString)
+            if (it != null) {
+                difficulties.add(it.difficulty.difString)
+            }
         }
         label.text = cs?._songName ?: ""
     }

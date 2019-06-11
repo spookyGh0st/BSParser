@@ -18,7 +18,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 data class Song (
 
 	@Transient var  path: Path? = null,
-	@Transient var songsDifficulties: ArrayList<Difficulty> = arrayListOf<Difficulty>(),
+	@Transient var songsDifficulties: ArrayList<Difficulty?> = arrayListOf(),
 	@SerializedName("_version") val _version: String,
 	@SerializedName("_songName") val _songName: String,
 	@SerializedName("_songSubName") val _songSubName: String,
