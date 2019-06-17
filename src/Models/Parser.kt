@@ -2,7 +2,6 @@ package Models
 
 import java.io.File
 import java.nio.file.Paths
-import kotlin.test.todo
 
 
 fun parseVaporFrame(normalLightsDifficulty: Difficulty, highwayLightsDifficulty: Difficulty,finalLightsDifficulty: Difficulty){
@@ -33,14 +32,38 @@ fun mapdown(){
             cs.songsDifficulties[i-1] = cs.songsDifficulties[i]?.copy()
             cs.songsDifficulties[i-1]!!.difficulty = DiffEnum.values()[i-1]
             cs.songsDifficulties[i-1]!!.path = Paths.get(cs.songsDifficulties[i-1]!!.path.toString().replace(DiffEnum.values()[i].difString, DiffEnum.values()[i-1].difString))
+            mapDifficulty(cs.songsDifficulties[i-1],cs._beatsPerMinute)
         }
-        mapDifficulty(cs.songsDifficulties[i], cs.songsDifficulties[i-1])
+    }
+    cs.songsDifficulties.forEach {
+        if (it != null) {
+            //Reader.writeDifficulty(it)
+        }
     }
 }
-fun mapDifficulty(currentD:Difficulty?, lowerD:Difficulty?){
-    println((currentD!!.difficulty?.difString ?: "test") +""+ (lowerD?.difficulty?.difString ?: "test"))
-    //todo all the hard wordk
+fun mapDifficulty( lowerD:Difficulty?,bpm:Double){
 
+    if ( lowerD == null)
+        return
+    val minRange = when(lowerD.difficulty){
+        DiffEnum.easy -> 1/(bpm/60*1)
+        DiffEnum.normal -> 1/(bpm/60*1.3)
+        DiffEnum.hard -> 1/(bpm/60*1.9)
+        DiffEnum.expert -> 1/(bpm/60*2.5)
+        DiffEnum.expertPlus -> 0.0
+    }
+
+
+   val notes= lowerD._notes.toMutableList()
+    val notesIterator = notes.listIterator(1)
+    for(i in notesIterator){
+        if(i._time - notes[notes.indexOf(i)-1]._time < minRange)
+            notesIterator.remove()
+        //das klappt so nicht
+    }
+    notes.forEach{
+        println(it._time - notes[notes.indexOf(it)-1]._time)
+    }
 }
 
 fun parseConcertCreator(targetBPM: Double?, d:Difficulty, songList: ArrayList<Song?>){
@@ -70,8 +93,10 @@ fun parseConcertCreator(targetBPM: Double?, d:Difficulty, songList: ArrayList<So
         }
 
         list[i]?._obstacles?.forEach { _obstacles ->
-            _obstacles._time *= (targetBPM!! / baseBPM!!)
+            _obstacles._time *= (targetBPM!! / baseBPM)
             _obstacles._time += offset
+            if(_obstacles._duration>0)
+                _obstacles._duration *= (targetBPM / baseBPM)
         }
 
         d._notes = d._notes.plus(list[i]!!._notes)
@@ -96,7 +121,7 @@ fun getExpertPlusDifficulty(s:Song?):Difficulty?{
 
 
 fun createBackup(d:Difficulty){
-    val dback = d
-    dback.path = File("${d.path}.old").toPath()
-    Reader.writeDifficulty(dback)
+    val dBack = d.copy()
+    dBack.path = File("${d.path}.old").toPath()
+    Reader.writeDifficulty(dBack)
 }

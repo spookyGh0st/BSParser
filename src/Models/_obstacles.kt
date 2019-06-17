@@ -19,6 +19,6 @@ data class _obstacles (
     @SerializedName("_time") var _time : Double,
     @SerializedName("_lineIndex") val _lineIndex : Double,
     @SerializedName("_type") val _type : Int,
-    @SerializedName("_duration") val _duration : Double,
+    @SerializedName("_duration") var _duration : Double,
     @SerializedName("_width") val _width : Double
 )
