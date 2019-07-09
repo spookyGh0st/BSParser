@@ -1,5 +1,4 @@
 package Models
-
 import com.google.gson.annotations.SerializedName
 
 /*
@@ -14,11 +13,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
-data class _notes (
+data class _bookmarks (
 
-    @SerializedName("_time") var _time : Double,
-    @SerializedName("_lineIndex") val _lineIndex : Int,
-    @SerializedName("_lineLayer") val _lineLayer : Int,
-    @SerializedName("_type") val _type : Int,
-    @SerializedName("_cutDirection") val _cutDirection : Int
+	@SerializedName("_time") val _time : Double,
+	@SerializedName("_name") val _name : String
 )

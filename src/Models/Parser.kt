@@ -2,6 +2,7 @@ package Models
 
 import java.io.File
 import java.nio.file.Paths
+import kotlin.random.Random
 
 
 fun parseVaporFrame(normalLightsDifficulty: Difficulty, highwayLightsDifficulty: Difficulty,finalLightsDifficulty: Difficulty){
@@ -54,7 +55,7 @@ fun mapDifficulty( lowerD:Difficulty?,bpm:Double){
     }
 
 
-   val notes= lowerD._notes.toMutableList()
+    val notes= lowerD._notes.toMutableList()
     val notesIterator = notes.listIterator(1)
     for(i in notesIterator){
         if(i._time - notes[notes.indexOf(i)-1]._time < minRange)
@@ -108,6 +109,36 @@ fun parseConcertCreator(targetBPM: Double?, d:Difficulty, songList: ArrayList<So
     d._events = d._events.sortedBy { it._time }
     d._obstacles = d._obstacles.sortedBy { it._time }
     Reader.writeDifficulty(d)
+
+}
+
+
+fun createComplexStream(start: Double, end: Double, interval: Int= 4, SkyStreams : Boolean): List<_notes>{
+    val templist = arrayListOf<_notes>()
+    var type = 1
+    var cutDirection = 1
+    var lineIndex = 0
+    var lineLayer = 0
+    var pointer:Double = start
+    while(pointer<end){
+        val lastNode = templist.findLast { it._time == pointer - 2/interval && it._type == type }
+        if(lastNode!=null){
+            lineIndex = lastNode._lineIndex
+            lineLayer = lastNode._lineLayer
+            cutDirection = when(lastNode._cutDirection) {
+                1 -> 0
+                0 -> 1
+                6 -> 5
+                5 -> 6
+                else -> 1
+            }
+        }
+        templist.add(_notes(pointer,lineIndex,lineLayer,type,cutDirection))
+        val a =pointer + (1 / interval.toDouble())
+        pointer = a
+        if(++type> 1)type= 0
+    }
+    return templist.toList()
 }
 
 

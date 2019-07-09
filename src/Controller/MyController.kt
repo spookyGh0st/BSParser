@@ -60,6 +60,31 @@ class MyController:Controller() {
     }
 
 
+    fun mapComplexStreams(b: Boolean){
+        val song = CurrentSong.getCS()
+        song?.songsDifficulties?.forEach { difficulty ->
+            var start = 0.0
+            var end = 0.0
+            if(difficulty != null){
+                difficulty._bookmarks.forEach{
+                    when(it._name)
+                    {
+                        "/startCS" -> start = it._time
+                        "/endCS" -> end = it._time
+                    }
+                    if(start < end){
+                        difficulty._notes = difficulty._notes.plus(createComplexStream(start,end,4,b))
+                        end = 0.0
+                    }
+                }
+                Reader.writeDifficulty(difficulty)
+            }
+        }
+
+
+    }
+
+
     init {
         path = WIPPath.getPathAsString()
         sl = WIPPath.getPath()?.let { SongList(it) }

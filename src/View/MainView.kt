@@ -41,6 +41,7 @@ class MainView: View(){
                     tab<VaporFrame>()
                     tab<ConcertCreator>()
                     tab<DownMapper>()
+                    tab<ComplexStreamCreator>()
 //                    tab<Screen3>()
                 }
             }
